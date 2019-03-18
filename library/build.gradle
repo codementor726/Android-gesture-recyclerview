@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'gesture-recycler'
+
+    publishedGroupId = 'com.thesurix.gesturerecycler'
+    libraryName = 'Gesture Recycler'
+    artifact = 'gesture-recycler'
+
+    libraryDescription = ' This library provides swipe & drag and drop support for RecyclerView. '
+
+    siteUrl = 'https://github.com/thesurix/gesture-recycler'
+    gitUrl = 'https://github.com/thesurix/gesture-recycler.git'
+
+    libraryVersion = '1.7.0'
+
+    developerId = 'thesurix'
+    developerName = 'Pawel Surowka'
+    developerEmail = 'thesurix@gmail.com'
+    organization = 'thesurix'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionCode 1
+        versionName version
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation supportDependencies.recyclerView
+    implementation supportDependencies.appCompat
+    implementation langDependencies.kotlin
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.junitKotlin
+}
+
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
+apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/install.gradle'
+apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/bintray.gradle'
